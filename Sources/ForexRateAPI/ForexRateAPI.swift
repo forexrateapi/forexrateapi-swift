@@ -62,6 +62,22 @@ public class ForexRateAPIService {
         session.finishTasksAndInvalidate()
     }
 
+    public func ohlc(base: String? = nil, currency: String, date: String, dateType: String? = nil, completion: @escaping (OHLCResult?) -> Void) {
+        let urlQueryitems = createQueryItems(items: [
+            "api_key": apiKey,
+            "base": base,
+            "currency": currency,
+            "date": date,
+            "date_type": dateType
+        ])
+        guard let url = createUrl(endpoint: "/ohlc", urlQueryItems: urlQueryitems) else { return }
+        let request = createUrlRequest(url: url, httpMethodType: .GET)
+        let task = createRequestAndDecodeUrlSessionDataTask(urlRequest: request, completion: completion)
+
+        task.resume()
+        session.finishTasksAndInvalidate()
+    }
+
     public func convert(fromCurrency: String? = nil, toCurrency: String, amount: Double, date: String? = nil, completion: @escaping (ConvertResult?) -> Void) {
         let urlQueryitems = createQueryItems(items: [
             "api_key": apiKey,
@@ -103,6 +119,18 @@ public class ForexRateAPIService {
             "currencies": (currencies ?? []).joined(separator: ",")
         ])
         guard let url = createUrl(endpoint: "/change", urlQueryItems: urlQueryitems) else { return }
+        let request = createUrlRequest(url: url, httpMethodType: .GET)
+        let task = createRequestAndDecodeUrlSessionDataTask(urlRequest: request, completion: completion)
+
+        task.resume()
+        session.finishTasksAndInvalidate()
+    }
+
+    public func usage(completion: @escaping (UsageResult?) -> Void) {
+        let urlQueryitems = createQueryItems(items: [
+            "api_key": apiKey,
+        ])
+        guard let url = createUrl(endpoint: "/usage", urlQueryItems: urlQueryitems) else { return }
         let request = createUrlRequest(url: url, httpMethodType: .GET)
         let task = createRequestAndDecodeUrlSessionDataTask(urlRequest: request, completion: completion)
 

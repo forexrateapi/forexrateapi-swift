@@ -37,7 +37,7 @@ let client = ForexRateAPIService(apiKey: apiKey)
 ```swift
 client.fetchSymbols(completion: { result in
   // do something
-}
+})
 ```
 
 [Link](https://forexrateapi.com/documentation#api_symbol)
@@ -51,7 +51,7 @@ client.fetchSymbols(completion: { result in
 ```swift
 client.fetchLive(base: "USD", currencies: ["AUD", "XAG", "GBP", "JPY"], completion: { result in
   // do something
-}
+})
 ```
 
 [Link](https://forexrateapi.com/documentation#api_realtime)
@@ -66,10 +66,26 @@ client.fetchLive(base: "USD", currencies: ["AUD", "XAG", "GBP", "JPY"], completi
 ```swift
 clientfetchHistorical(date: "2021-04-05", base: "USD", currencies: ["AUD", "XAG", "GBP", "JPY"], completion: { result in
   // do something
-}
+})
 ```
 
 [Link](https://forexrateapi.com/documentation#api_historical)
+
+---
+#### ohlc(base, currency, date, date_type)
+
+- `base` <[string]> Optional. Pass in a base currency, defaults to USD.
+- `currency` <[string]> Required. Specify currency you would like to get OHLC for.
+- `date` <[string]> Required. Specify date to get OHLC for specific date using format `YYYY-MM-DD`.
+- `date_type` <[string]> Optional. Pass in a date type, overrides date parameter if passed in.
+
+```swift
+client.ohlc(base: "USD", currency: "EUR", date: "2021-04-05", dateType: nil, completion: { result in
+  // do something
+})
+```
+
+[Link](https://forexrateapi.com/documentation#api_ohlc)
 
 ---
 #### convert(from_currency, to_currency, amount, date)
@@ -82,7 +98,7 @@ clientfetchHistorical(date: "2021-04-05", base: "USD", currencies: ["AUD", "XAG"
 ```swift
 client.convert(fromCurrency: "USD", toCurrency: "EUR", amount: 100.0, date: "2021-04-05", completion: { result in
   // do something
-}
+})
 ```
 
 [Link](https://forexrateapi.com/documentation#api_convert)
@@ -98,7 +114,7 @@ client.convert(fromCurrency: "USD", toCurrency: "EUR", amount: 100.0, date: "202
 ```swift
 client.timeframe(startDate: "2021-04-05", endDate: "2021-04-06", base: "USD", currencies: ["AUD", "XAG", "GBP", "JPY"], completion: { result in
   // do something
-}
+})
 ```
 
 [Link](https://forexrateapi.com/documentation#api_timeframe)
@@ -114,14 +130,24 @@ client.timeframe(startDate: "2021-04-05", endDate: "2021-04-06", base: "USD", cu
 ```swift
 client.change(startDate: "2021-04-05", endDate: "2021-04-06", base: "USD", currencies: ["AUD", "XAG", "GBP", "JPY"], completion: { result in
   // do something
-}
+})
 ```
 
 [Link](https://forexrateapi.com/documentation#api_change)
 
 ---
-**[Official documentation](https://forexrateapi.com/documentation)**
+#### usage()
 
+```swift
+client.usage(completion: { result in
+  // do something
+})
+```
+
+[Link](https://forexrateapi.com/documentation#api_usage)
+
+---
+**[Official documentation](https://forexrateapi.com/documentation)**
 
 ---
 ## FAQ
